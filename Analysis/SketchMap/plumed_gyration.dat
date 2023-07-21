@@ -1,0 +1,12 @@
+#define the atoms of backbone 
+bb: GROUP NDX_FILE=index.ndx NDX_GROUP=Backbone
+
+# Compute the radius of gyration
+GYRATION TYPE=RADIUS ATOMS=bb LABEL=rg
+
+# This command stores all the alhabeta that were computed
+cc: COLLECT_FRAMES ARG=rg
+
+# This command outputs all the Ramachandran angles that were stored to a file called angles_data
+OUTPUT_ANALYSIS_DATA_TO_COLVAR USE_OUTPUT_DATA_FROM=cc ARG=cc.* FILE=gyr_data
+

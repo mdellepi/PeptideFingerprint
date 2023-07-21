@@ -1,0 +1,35 @@
+# This reads in the template pdb file and thus allows us to use the @nonhydrogens
+# special group later in the input
+MOLINFO STRUCTURE=bp1.pdb MOLTYPE=protein
+
+# Measures a distance including pbc between the instantaneous values of a set of torsional angles and set of reference values
+ALPHABETA ...
+ATOMS1=@phi-2 REFERENCE1=-1.309
+ATOMS2=@psi-2 REFERENCE2=2.61799
+ATOMS3=@phi-3 REFERENCE3=-1.309
+ATOMS4=@psi-3 REFERENCE4=2.61799
+ATOMS5=@phi-4 REFERENCE5=-1.309
+ATOMS6=@psi-4 REFERENCE6=2.61799
+ATOMS7=@phi-5 REFERENCE7=-1.309
+ATOMS8=@psi-5 REFERENCE8=2.61799
+ATOMS9=@phi-6 REFERENCE9=-1.309
+ATOMS10=@psi-6 REFERENCE10=2.61799
+ATOMS11=@phi-7 REFERENCE11=-1.309
+ATOMS12=@psi-7 REFERENCE12=2.61799
+ATOMS13=@phi-8 REFERENCE13=-1.309
+ATOMS14=@psi-8 REFERENCE14=2.61799
+ATOMS15=@phi-9 REFERENCE15=-1.309
+ATOMS16=@psi-9 REFERENCE16=2.61799
+ATOMS17=@phi-10 REFERENCE17=-1.309
+ATOMS18=@psi-10 REFERENCE18=2.61799
+ATOMS19=@phi-11 REFERENCE19=-1.309
+ATOMS20=@psi-11 REFERENCE20=2.61799
+LABEL=ab
+... ALPHABETA
+
+# This command stores all the alhabeta that were computed
+cc: COLLECT_FRAMES ARG=ab 
+
+# This command outputs all the Ramachandran angles that were stored to a file called angles_data
+OUTPUT_ANALYSIS_DATA_TO_COLVAR USE_OUTPUT_DATA_FROM=cc ARG=cc.* FILE=alphabeta_data
+
